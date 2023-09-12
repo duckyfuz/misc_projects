@@ -1,8 +1,8 @@
-const fs = require("fs");
-const http = require("http");
-const url = require("url");
+const fs = require('fs');
+const http = require('http');
+const url = require('url');
 
-const slugify = require("slugify");
+const slugify = require('slugify');
 
 ////////////////////////////////////////////////////////////////////
 // FILES
@@ -20,7 +20,7 @@ const slugify = require("slugify");
 
 ////////////////////////////////////////////////////////////////////
 // SERVER
-const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf8");
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf8');
 const dataObj = JSON.parse(data);
 
 const server = http.createServer((req, res) => {
@@ -28,21 +28,21 @@ const server = http.createServer((req, res) => {
   console.log(query, pathname);
 
   const pathName = req.url;
-  if (pathName === "/" || pathName === "/overview") {
-    res.end("Hello from the server!");
-  } else if (pathName === "/api") {
+  if (pathName === '/' || pathName === '/overview') {
+    res.end('Hello from the server!');
+  } else if (pathName === '/api') {
     // console.log(prodData);
-    res.writeHead(200, { "Content-type": "application/json" });
+    res.writeHead(200, { 'Content-type': 'application/json' });
     res.end(data);
   } else {
     res.writeHead(404, {
-      "Content-Type": "text/html",
-      "my-own-header": "hello-world",
+      'Content-Type': 'text/html',
+      'my-own-header': 'hello-world',
     });
-    res.end("<h1>Page not found!</h1>");
+    res.end('<h1>Page not found!</h1>');
   }
 });
 
-server.listen(8000, "127.0.0.1", () => {
-  console.log("Hello from port 8000");
+server.listen(8000, '127.0.0.1', () => {
+  console.log('Hello from port 8000');
 });
