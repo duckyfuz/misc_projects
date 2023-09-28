@@ -47,6 +47,22 @@ app.post('/api/v1/tours', (req, res) => {
   );
 });
 
+app.get('/api/v1/tours/:id/:y?', (req, res) => {
+  // /:y? is an OPTIONAL param -> due to ?
+  console.log(req.params);
+
+  const id = req.params.id * 1;
+  const tour = tours.find((el) => el.id === id);
+
+  res.status(200).json({
+    status: 'success',
+    //   results: tours.length,
+    data: {
+      tour, // can write this syntax instead of tours: tours
+    },
+  });
+});
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`App running on ${port}`);
